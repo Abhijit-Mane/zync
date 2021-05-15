@@ -31,4 +31,4 @@ before_install:
 
 
 script:
-  - sudo -i -u postgres bash -c 'mkdir -p ./pgsql/data; export PATH=$PATH:/usr/lib/postgresql/12/bin:/usr/local/bin; pg_ctl initdb -D ./pgsql/data -o "-E=UTF8"; pg_ctl start -D ./pgsql/data; bundle config set --local path 'vendor/bundle';  bundle install; ./bin/setup; bundle exec rails test'
+  - sudo -i -u postgres bash -c 'mkdir -p ./pgsql/data; export PATH=$PATH:/usr/lib/postgresql/12/bin:/usr/local/bin; /usr/lib/postgresql/12/bin/pg_ctl initdb -D ./pgsql/data -o "-E=UTF8"; /usr/lib/postgresql/12/bin/pg_ctl start -D ./pgsql/data; bundle config set --local path 'vendor/bundle';  bundle install; ./bin/setup; bundle exec rails test'
