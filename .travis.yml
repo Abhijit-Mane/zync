@@ -20,8 +20,7 @@ before_install:
   - ./ci/setup_${TRAVIS_OS_NAME}_environment.sh
 
 script:
-  - sudo -i -u postgres bash -c \
-    'export PGDATA=$PWD/pgsql/data; mkdir -p $PGDATA;     \
+  - sudo -i -u postgres bash -c 'export PGDATA=./pgsql/data; mkdir -p $PGDATA; \
     export PATH=$PATH:/usr/lib/postgresql/12/bin:/usr/local/bin;  \
     pg_ctl initdb -D $PGDATA -o "-E=UTF8";                \
     pg_ctl start -D $PGDATA;                              \
