@@ -12,4 +12,4 @@ gem install bundler
 #wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 #sudo apt-get -y install postgresql-12 
 #sudo apt-get -y install postgresql-server-dev-12
-sudo apt-get -y libpq-dev
+#sudo apt-get -y libpq-dev
