@@ -1,0 +1,31 @@
+language: ruby
+sudo: false
+dist: bionic
+arch: ppc64le
+include:
+- os: linux
+  addons:
+    packages:
+    - build-essential
+    - make
+    - gcc
+    - wget
+    - gem
+    - shared-mime-info.ppc64le
+    - zlib.ppc64le
+    - zlib-devel.ppc64le
+
+before_install:
+  - sudo apt-get update
+  - ./ci/setup_${TRAVIS_OS_NAME}_environment.sh
+
+script:
+  - sudo -i -u postgres bash -c \
+    'export PGDATA=$PWD/pgsql/data; mkdir -p $PGDATA;     \
+    export PATH=$PATH:/usr/pgsql-13/bin:/usr/local/bin ;  \
+    pg_ctl initdb -D $PGDATA -o "-E=UTF8";                \
+    pg_ctl start -D $PGDATA;                              \
+    bundle config set --local path 'vendor/bundle';       \
+    bundle install;                                       \
+    ./bin/setup;                                          \
+    bundle exec rails test'
